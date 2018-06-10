@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { MapPage } from '../map/map';
+import { Http } from '@angular/http';
 
-/**
- * Generated class for the SearchPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-search',
@@ -14,11 +10,26 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class SearchPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http) {
   }
+
+  skillsList=[];
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
   }
+
+  /* public getSkillsList() {
+    const url = "http://tccdirectory.1click.pf/api/skills"
+
+    return this.http.get(url)
+    .toPromise()
+    .then(response => {
+      skillsList = response.json()
+      console.log('Liste de compétences obtenue !')
+    })
+    .catch(error => console.log('Erreur dans getSkillsList', error))
+  } */
+
 
 }

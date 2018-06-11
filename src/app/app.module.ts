@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
-
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Geolocation } from '@ionic-native/geolocation';
 import { CallNumber } from '@ionic-native/call-number';
@@ -20,6 +19,7 @@ import { FavoritesPage } from '../pages/favorites/favorites';
 
 import { HttpModule } from '@angular/http';
 import { TccdApiService } from '../services/tccdapi.service';
+import { DatabaseProvider } from './../services/database.service';
 
 
 
@@ -51,6 +51,7 @@ import { TccdApiService } from '../services/tccdapi.service';
     SplashScreen,
     SQLite,
     TccdApiService,
+    DatabaseProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -16,6 +16,10 @@ import { MapPage } from '../pages/map/map';
 import { ListPage } from '../pages/list/list';
 import { FavoritesPage } from '../pages/favorites/favorites';
 
+import { HttpModule } from '@angular/http';
+import { TccdApiService } from '../services/tccdapi.service';
+
+
 
 @NgModule({
   declarations: [
@@ -27,6 +31,7 @@ import { FavoritesPage } from '../pages/favorites/favorites';
     FavoritesPage
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -43,6 +48,7 @@ import { FavoritesPage } from '../pages/favorites/favorites';
     StatusBar,
     SplashScreen,
     SQLite,
+    TccdApiService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

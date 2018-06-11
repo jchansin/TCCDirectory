@@ -3,6 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import { MapPage } from '../map/map';
 import { Http } from '@angular/http';
 
+import { TccdApiGlobal } from './../../models/tccdapi-global.model';
+import { TccdApiService } from './../../services/tccdapi.service';
+
 
 @Component({
   selector: 'page-search',
@@ -10,26 +13,25 @@ import { Http } from '@angular/http';
 })
 export class SearchPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http) {
+  skillsList: TccdApiGlobal;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private tccdApiService: TccdApiService) {
+
+   /*  this.tccdApiService.getSkillsList()
+    .then(skillsListFetched => {      
+      this.skillsList = skillsListFetched;
+      console.log(this.skillsList);
+    }); */
+
+    console.log(JSON.stringify(this.tccdApiService.getBusinessInfo()));
+
   }
 
-  skillsList=[];
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
   }
 
-  /* public getSkillsList() {
-    const url = "http://tccdirectory.1click.pf/api/skills"
-
-    return this.http.get(url)
-    .toPromise()
-    .then(response => {
-      skillsList = response.json()
-      console.log('Liste de compétences obtenue !')
-    })
-    .catch(error => console.log('Erreur dans getSkillsList', error))
-  } */
-
+  
 
 }

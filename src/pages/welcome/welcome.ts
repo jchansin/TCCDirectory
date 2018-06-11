@@ -1,26 +1,29 @@
+import { DatabaseProvider } from './../../services/database.service';
 import { SearchPage } from './../search/search';
 import { Component } from "@angular/core";
 import { NavController, NavParams, Platform } from "ionic-angular";
 import { SQLite, SQLiteObject } from "@ionic-native/sqlite";
+
 
 @Component({
     selector: "page-welcome",
     templateUrl: "welcome.html"
 })
 export class WelcomePage {
-    database: SQLiteObject;
     splash = true;
 
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
         private platform: Platform,
-        public sqlite: SQLite
+        public sqlite: SQLite,
+        public database: DatabaseProvider
     ) {
         this.platform.ready().then(() => {
-            //   this.initDb();
+            //this.database.initDb();
         });
     }
+
     ionViewDidLoad() {
         console.log("ionViewDidLoad WelcomePage");
         setTimeout(() => {
@@ -28,22 +31,22 @@ export class WelcomePage {
             this.redirectToHome();
         }, 4000);
     }
-        redirectToHome() {
-      this.navCtrl.setRoot(SearchPage);
-      }
+
+    redirectToHome() {
+    this.navCtrl.setRoot(SearchPage);
+    }
 
     //  initDb() {
-    //      this.sqlite
-    //          .create({
-    //              name: "data.db",
-    //             location: "default"
-    //              })
-    //             .then((db: SQLiteObject) => {
-    //               this.database = db;
-    //               this.createSkillsTable();
-    //             // console.log("CREATE SUCESS");
-    //          })
-    //          .catch(e => console.log(e));
+    //      this.sqlite.create({
+    //          name: "data.db",
+    //          location: "default"
+    //      })
+    //      .then((db: SQLiteObject) => {
+    //          this.database = db;
+    //          this.createSkillsTable();
+    //          console.log("CREATE SUCESS");
+    //      })
+    //      .catch(e => console.log(e));
     //  }
 
     //  createSkillsTable(): any {

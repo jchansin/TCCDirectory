@@ -24,8 +24,9 @@ export class SearchPage {
       this.skillsList = skillsListFetched;
       console.log(this.skillsList);
     }); */
-
-    console.log(JSON.stringify(this.tccdApiService.getBusinessInfo()));
+    this.tccdApiService.getBusiness(12).then ((resp) => {
+      console.log(JSON.stringify(resp));
+    })
 
   }
 

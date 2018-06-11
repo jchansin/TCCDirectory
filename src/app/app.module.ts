@@ -4,6 +4,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+
+import { WelcomePage } from './../pages/welcome/welcome';
+
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Geolocation } from '@ionic-native/geolocation';
 import { CallNumber } from '@ionic-native/call-number';
@@ -25,6 +28,7 @@ import { TccdApiService } from '../services/tccdapi.service';
   declarations: [
     MyApp,
     HomePage,
+    WelcomePage,
     SearchPage,
     MapPage,
     ListPage,
@@ -39,6 +43,7 @@ import { TccdApiService } from '../services/tccdapi.service';
   entryComponents: [
     MyApp,
     HomePage,
+    WelcomePage
     SearchPage,
     MapPage,
     ListPage,

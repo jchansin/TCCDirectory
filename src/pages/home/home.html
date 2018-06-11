@@ -9,14 +9,22 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-        TITTRE
+      Ionic Blank
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+
+    <ion-card *ngFor="let skill of skills">
+
+        <ion-item>
+            <ion-icon name="logo-freebsd-devil" item-start large></ion-icon>
+            <h2>{{ skill.skills }} </h2>
+        </ion-item>
+
+    </ion-card>
+
+
 </ion-content>

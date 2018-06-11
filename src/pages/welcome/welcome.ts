@@ -29,7 +29,7 @@ export class WelcomePage {
         }, 4000);
     }
         redirectToHome() {
-      this.navCtrl.push(SearchPage);
+      this.navCtrl.setRoot(SearchPage);
       }
 
     //  initDb() {

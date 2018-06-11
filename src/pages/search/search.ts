@@ -1,6 +1,8 @@
+import { FavoritesPage } from './../favorites/favorites';
+import { ListPage } from './../list/list';
+// import { MapPage } from './../map/map';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { MapPage } from '../map/map';
 import { Http } from '@angular/http';
 
 import { TccdApiGlobal } from './../../models/tccdapi-global.model';
@@ -18,7 +20,7 @@ export class SearchPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private tccdApiService: TccdApiService) {
 
    /*  this.tccdApiService.getSkillsList()
-    .then(skillsListFetched => {      
+    .then(skillsListFetched => {
       this.skillsList = skillsListFetched;
       console.log(this.skillsList);
     }); */
@@ -32,6 +34,14 @@ export class SearchPage {
     console.log('ionViewDidLoad SearchPage');
   }
 
-  
+  goToListPage(){
+    //   console.log('ionViewDidLoad MapPage');
+      this.navCtrl.setRoot(ListPage)
+  }
+  goToFavoritesPage() {
+    this.navCtrl.setRoot(FavoritesPage);
+}
+
+
 
 }

@@ -6,9 +6,19 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>List</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button (click)="goToSearchPage()">
+                <ion-icon name="md-search"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-buttons end>
+            <button ion-button (click)="goToFavoritesPage()">
+                <ion-icon name="md-star"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>List</ion-title>
+    </ion-navbar>
 
 </ion-header>
 

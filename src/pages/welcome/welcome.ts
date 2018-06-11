@@ -1,4 +1,4 @@
-import { HomePage } from './../home/home';
+import { SearchPage } from './../search/search';
 import { Component } from "@angular/core";
 import { NavController, NavParams, Platform } from "ionic-angular";
 import { SQLite, SQLiteObject } from "@ionic-native/sqlite";
@@ -29,7 +29,7 @@ export class WelcomePage {
         }, 4000);
     }
         redirectToHome() {
-      this.navCtrl.push(HomePage);
+      this.navCtrl.push(SearchPage);
       }
 
     //  initDb() {
@@ -99,13 +99,13 @@ export class WelcomePage {
     //          this.database
     //          .executeSql(inserts, {})
     //          .then(() => {
-    //              this.redirectToHome();
+    //              this.redirectToSearch();
     //          })
     //          .catch(e => console.log(e));
     //  }
 
-    //  redirectToHome() {
-    //      this.navCtrl.push(HomePage);
+    //  redirectToSearch() {
+    //      this.navCtrl.push(SearchPage);
     //  }
 
 

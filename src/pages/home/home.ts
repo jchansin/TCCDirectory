@@ -9,6 +9,7 @@ export class HomePage {
     totalSkills = 0;
     skills = [];
 
+
     constructor(
         public navCtrl: NavController,
         private platform: Platform,
@@ -35,3 +36,18 @@ export class HomePage {
                  })
              };
         }
+
+  splash = true;
+
+  constructor(public navCtrl: NavController) {
+
+  }
+  ionViewDidLoad(){
+   setTimeout(() => {
+     this.splash = false;
+
+   }, 4000);
+  }
+
+}
+

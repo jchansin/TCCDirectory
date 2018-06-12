@@ -1,3 +1,4 @@
+import { MapPage } from './../pages/map/map';
 // import { HomePage } from "./../pages/home/home";
 
 import { Component } from "@angular/core";
@@ -12,7 +13,7 @@ import { WelcomePage } from './../pages/welcome/welcome';
 })
 export class MyApp {
 
-    rootPage: any = WelcomePage;
+    rootPage: any = MapPage;
 
     constructor(
         platform: Platform,

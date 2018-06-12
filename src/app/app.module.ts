@@ -20,6 +20,9 @@ import { FavoritesPage } from '../pages/favorites/favorites';
 import { HttpModule } from '@angular/http';
 import { TccdApiService } from '../services/tccdapi.service';
 import { DatabaseProvider } from './../services/database.service';
+import { ConnectivityProvider } from '../providers/connectivity/connectivity';
+import { GoogleMapsProvider } from '../providers/google-maps/google-maps';
+import { LocationsProvider } from '../providers/locations/locations';
 
 
 
@@ -51,8 +54,12 @@ import { DatabaseProvider } from './../services/database.service';
     SplashScreen,
     SQLite,
     TccdApiService,
+    Geolocation,
     DatabaseProvider,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ConnectivityProvider,
+    GoogleMapsProvider,
+    LocationsProvider
   ]
 })
 export class AppModule {}

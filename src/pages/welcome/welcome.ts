@@ -32,7 +32,6 @@ export class WelcomePage {
         }, 4000);
     }
 
-
     redirectToHome() {
     this.navCtrl.setRoot(SearchPage);
     }

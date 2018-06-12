@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { ListPage } from "./../list/list";
+import { Component } from "@angular/core";
+import { NavController, NavParams } from "ionic-angular";
+import { SearchPage } from "../search/search";
 
 /**
  * Generated class for the FavoritesPage page.
@@ -9,16 +11,21 @@ import { NavController, NavParams } from 'ionic-angular';
  */
 
 @Component({
-  selector: 'page-favorites',
-  templateUrl: 'favorites.html',
+    selector: "page-favorites",
+    templateUrl: "favorites.html"
 })
 export class FavoritesPage {
+    constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    ionViewDidLoad() {
+        console.log("ionViewDidLoad FavoritesPage");
+    }
+    goToListPage() {
+        //   console.log('ionViewDidLoad MapPage');
+        this.navCtrl.setRoot(ListPage);
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FavoritesPage');
-  }
-
+    goToSearchPage() {
+        this.navCtrl.setRoot(SearchPage);
+    }
 }

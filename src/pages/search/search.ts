@@ -1,7 +1,9 @@
 import { DatabaseProvider } from './../../services/database.service';
+import { FavoritesPage } from './../favorites/favorites';
+import { ListPage } from './../list/list';
+// import { MapPage } from './../map/map';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { MapPage } from '../map/map';
 import { Http } from '@angular/http';
 
 import { TccdApiGlobal } from './../../models/tccdapi-global.model';
@@ -15,6 +17,7 @@ import { TccdApiService } from './../../services/tccdapi.service';
 export class SearchPage {
 
   skillsList: TccdApiGlobal;
+  skills = [];
 
   constructor(public database: DatabaseProvider, public navCtrl: NavController, public navParams: NavParams, private http: Http, private tccdApiService: TccdApiService) {
     /* this.tccdApiService.getBusiness(12).then ((resp) => {
@@ -28,8 +31,21 @@ export class SearchPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
+    this.tccdApiService.getSkillsList()
+    .then (response => {
+        console.log(JSON.stringify(response.data[0].name));
+        //this.skills = response.data.length;
+        for (let i = 0; i < response.data.length; i++) {
+            this.skills.push(response.data[i].name);
+    }})
   }
 
-  
+  goToListPage(){
+      this.navCtrl.setRoot(ListPage)
+  }
+  goToFavoritesPage() {
+    this.navCtrl.setRoot(FavoritesPage);
+}
+
 
 }

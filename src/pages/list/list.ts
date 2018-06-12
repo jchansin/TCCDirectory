@@ -1,3 +1,5 @@
+import { FavoritesPage } from './../favorites/favorites';
+import { SearchPage } from './../search/search';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -19,6 +21,13 @@ export class ListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListPage');
+  }
+  goToSearchPage(){
+    //   console.log('ionViewDidLoad MapPage');
+      this.navCtrl.setRoot(SearchPage);
+  }
+  goToFavoritesPage() {
+      this.navCtrl.setRoot(FavoritesPage);
   }
 
 }

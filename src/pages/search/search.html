@@ -6,15 +6,31 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Search</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button (click)="goToListPage()">
+                <ion-icon name="md-list"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-buttons end>
+            <button ion-button (click)="goToFavoritesPage()">
+                <ion-icon name="md-star"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>Search</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
 
+        <ion-card *ngFor="let skill of skills">
 
-  
+                <ion-item>
+                    <h2> {{ skill }} </h2>
+                </ion-item>
+
+        </ion-card>
+
 </ion-content>

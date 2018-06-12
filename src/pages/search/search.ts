@@ -14,6 +14,7 @@ import { TccdApiService } from './../../services/tccdapi.service';
 })
 export class SearchPage {
 
+  skillArray: Array<string>;
   skills = [];
   selected_value: string;
   value: string;

@@ -1,3 +1,4 @@
+import { DatabaseProvider } from './../../services/database.service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MapPage } from '../map/map';
@@ -15,16 +16,12 @@ export class SearchPage {
 
   skillsList: TccdApiGlobal;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private tccdApiService: TccdApiService) {
-
-   /*  this.tccdApiService.getSkillsList()
-    .then(skillsListFetched => {      
-      this.skillsList = skillsListFetched;
-      console.log(this.skillsList);
-    }); */
-    this.tccdApiService.getBusiness(12).then ((resp) => {
-      console.log(JSON.stringify(resp));
-    })
+  constructor(public database: DatabaseProvider, public navCtrl: NavController, public navParams: NavParams, private http: Http, private tccdApiService: TccdApiService) {
+    /* this.tccdApiService.getBusiness(12).then ((resp) => {
+      console.log(JSON.stringify(resp)); 
+    }) */
+    
+    this.database.selectFavorite();
 
   }
 

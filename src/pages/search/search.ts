@@ -16,6 +16,7 @@ import { TccdApiService } from './../../services/tccdapi.service';
 export class SearchPage {
 
   skillsList: TccdApiGlobal;
+  skills = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private tccdApiService: TccdApiService) {
 
@@ -24,25 +25,30 @@ export class SearchPage {
       this.skillsList = skillsListFetched;
       console.log(this.skillsList);
     }); */
-    this.tccdApiService.getBusiness(12).then ((resp) => {
-      console.log(JSON.stringify(resp));
-    })
+    // this.tccdApiService.getBusiness(12).then ((resp) => {
+    //   console.log(JSON.stringify(resp));
+    // })
 
   }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
+    this.tccdApiService.getSkillsList()
+    .then (response => {
+        console.log(JSON.stringify(response.data[0].name));
+        //this.skills = response.data.length;
+        for (let i = 0; i < response.data.length; i++) {
+            this.skills.push(response.data[i].name);
+    }})
   }
 
   goToListPage(){
-    //   console.log('ionViewDidLoad MapPage');
       this.navCtrl.setRoot(ListPage)
   }
   goToFavoritesPage() {
     this.navCtrl.setRoot(FavoritesPage);
 }
-
 
 
 }

@@ -18,7 +18,7 @@ export class MapPage {
     results = [];
     mapResults: any;
     menuId: number;
-
+    businessInfo: any;
 
     constructor(
         public navCtrl: NavController,
@@ -31,35 +31,36 @@ export class MapPage {
 
     ionViewDidLoad() {
 
+
+        let mapOptions = {
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        
+        this.map = new google.maps.Map(
+            this.mapElement.nativeElement,
+            mapOptions
+        );
+
         this.getSearchResults();
         this.loadMap();
     }
 
     // Initialise la carte centrée sur la position du téléphone
     loadMap() {
-        this.geolocation.getCurrentPosition().then(
-            position => {
+        console.log('Load map');
+        this.geolocation.getCurrentPosition().then((position) => {
                 let latLng = new google.maps.LatLng(
                     position.coords.latitude,
                     position.coords.longitude
                 );
-
-                let mapOptions = {
-                    center: latLng,
-                    zoom: 15,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-
-                this.map = new google.maps.Map(
-                    this.mapElement.nativeElement,
-                    mapOptions
-                );
+                this.map.setCenter(latLng);
                 this.addMarker();
-            },
-            err => {
-                console.log(err);
-            }
-        );
+                console.log(position);
+            })
+            .catch((error) => {
+                console.log('Error getting location', error);
+              });
     }
 
     // Ajoute un marqueur au centre de la carte
@@ -67,7 +68,9 @@ export class MapPage {
         let marker = new google.maps.Marker({
             map: this.map,
             animation: google.maps.Animation.DROP,
-            position: this.map.getCenter()
+            position: this.map.getCenter(),
+            title: "Vous êtes ici",
+            label: "Moi"
         });
 
         let content = "<h4>Information!</h4>";
@@ -133,23 +136,28 @@ export class MapPage {
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(this.results[i].latitude, this.results[i].longitude),
                 map: this.map
-            });
-
-            /* let contentString = "<div>" + "<img src='" + 
-                this.results[i].logo + "'  style = 'display: block; margin-left: auto; margin-right: auto; width: 50%; height: 50%'/>" + '</div>' +
-                "<hr/><div style = 'text-align: center'><h2>" + this.results[i].name + '</h2></div>';
-            let infoWindow = new google.maps.InfoWindow({
-                content: contentString,
-                maxWidth: 256
-            }); */
-            
+            });      
     
-            google.maps.event.addListener(marker, "click", () => {
-                this.toggleMenu();
-                console.log(this.results);
-            });
+            // google.maps.event.addListener(marker, "click", (marker, i) => {
+            //     this.toggleMenu();
+            //     console.log(this.results[i].latitude);
+            // })(marker, i, this);
+
+            
         }
     }
+
+    addMenuToggle(x, i) {
+        console.log(this.results[i].name);
+        this.tccdApi.getBusiness(x)
+        .then((results) => {
+            this.businessInfo = results;
+            console.log('Données de addMenuToggle :', this.businessInfo)
+            this.menuCtrl.toggle(this.businessInfo);
+        })
+        .catch((e) => console.log('Erreur dans addMenuToggle', (e)))
+    }
+
 
     toggleMenu() {
         //this.menuId = x;

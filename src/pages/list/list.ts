@@ -54,7 +54,7 @@ export class ListPage {
     // }
 
     CallNumber(){
-        this.callSvc.callNumber('87285738', true).then(() => {
+        this.callSvc.callNumber('87213406', true).then(() => {
             console.log('call worked');
         }).catch((err) => {
             alert(JSON.stringify(err))
@@ -68,7 +68,7 @@ export class ListPage {
                 intent: 'INTENT'
             }
         }
-        this.sms.send('87285738', 'Message', options).then(() => {
+        this.sms.send('87213406', 'Message', options).then(() => {
             console.log('sms worked');
         }).catch((err) => {
             alert(JSON.stringify(err))

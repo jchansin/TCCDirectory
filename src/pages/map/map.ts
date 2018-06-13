@@ -34,6 +34,7 @@ export class MapPage {
         this.loadMap();
     }
 
+    // Initialise la carte centrée sur la position du téléphone
     loadMap() {
         this.geolocation.getCurrentPosition().then(
             position => {
@@ -60,6 +61,7 @@ export class MapPage {
         );
     }
 
+    // Ajoute un marqueur au centre de la carte
     addMarker() {
         let marker = new google.maps.Marker({
             map: this.map,
@@ -72,6 +74,7 @@ export class MapPage {
         this.addInfoWindow(marker, content);
     }
 
+    // Fenêtre d'information liée au marqueur initial
     addInfoWindow(marker, content) {
         let infoWindow = new google.maps.InfoWindow({
             content: content
@@ -101,6 +104,7 @@ export class MapPage {
     //     }
     // }
 
+    // Récupère les filtres de SearchPage et envoie une requête à l'API
     getSearchResults() {
         this.value = this.navParams.get('value');
         this.results = [];
@@ -120,9 +124,10 @@ export class MapPage {
         })
     }
 
+    // Ajoute des marqueurs pour chaque résultat de la recherche
     addResultsMarker() {
         let marker, i;
-
+        console.log(this.results);
         for (i = 0; i < this.results.length; i++) {
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(this.results[i].latitude, this.results[i].longitude),
@@ -140,7 +145,7 @@ export class MapPage {
     
             google.maps.event.addListener(marker, "click", () => {
                 this.toggleMenu();
-                console.log(JSON.stringify(this.results[i].latitude));
+                console.log(this.results);
             });
         }
     }

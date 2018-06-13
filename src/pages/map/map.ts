@@ -2,7 +2,7 @@ import { Http } from '@angular/http';
 import { TccdApiService } from './../../services/tccdapi.service';
 import { Geolocation } from "@ionic-native/geolocation";
 import { Component, ViewChild, ElementRef } from "@angular/core";
-import { NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams, MenuController } from "ionic-angular";
 import { ListPage } from '../list/list';
 
 declare var google;
@@ -17,13 +17,16 @@ export class MapPage {
     value: string;
     results = [];
     mapResults: any;
+    menuId: number;
+
 
     constructor(
         public navCtrl: NavController,
         public geolocation: Geolocation,
         public navParams: NavParams,
         public tccdApi: TccdApiService,
-        public http: Http
+        public http: Http,
+        public menuCtrl: MenuController
     ) {}
 
     ionViewDidLoad() {
@@ -126,7 +129,26 @@ export class MapPage {
                 position: new google.maps.LatLng(this.results[i].latitude, this.results[i].longitude),
                 map: this.map
             });
+
+            /* let contentString = "<div>" + "<img src='" + 
+                this.results[i].logo + "'  style = 'display: block; margin-left: auto; margin-right: auto; width: 50%; height: 50%'/>" + '</div>' +
+                "<hr/><div style = 'text-align: center'><h2>" + this.results[i].name + '</h2></div>';
+            let infoWindow = new google.maps.InfoWindow({
+                content: contentString,
+                maxWidth: 256
+            }); */
+            
+    
+            google.maps.event.addListener(marker, "click", () => {
+                this.toggleMenu();
+                console.log(JSON.stringify(this.results[i].latitude));
+            });
         }
+    }
+
+    toggleMenu() {
+        //this.menuId = x;
+        this.menuCtrl.toggle();
     }
 
     goToListPage(){

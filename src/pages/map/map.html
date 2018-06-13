@@ -2,11 +2,16 @@
     <ion-header>
         <ion-navbar>
             <ion-title>
-                Map
+                Carte des résultats
             </ion-title>
             <ion-buttons end>
-                <button ion-button (click)="addMarker()">
-                    <ion-icon name="add"></ion-icon>Add Marker</button>
+                <button ion-button (click)="addResultsMarker()">
+                    <ion-icon name="add"></ion-icon>Afficher les résultats</button>
+            </ion-buttons>
+            <ion-buttons end>
+                <button ion-button (click)="goToListPage()">
+                    <ion-icon name="md-list"></ion-icon>
+                </button>
             </ion-buttons>
         </ion-navbar>
     </ion-header>

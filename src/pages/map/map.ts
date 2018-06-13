@@ -1,6 +1,9 @@
+import { Http } from '@angular/http';
+import { TccdApiService } from './../../services/tccdapi.service';
 import { Geolocation } from "@ionic-native/geolocation";
 import { Component, ViewChild, ElementRef } from "@angular/core";
-import { NavController } from "ionic-angular";
+import { NavController, NavParams } from "ionic-angular";
+import { ListPage } from '../list/list';
 
 declare var google;
 
@@ -11,35 +14,24 @@ declare var google;
 export class MapPage {
     @ViewChild("map") mapElement: ElementRef;
     map: any;
+    value: string;
+    results = [];
 
     constructor(
         public navCtrl: NavController,
-        public geolocation: Geolocation
+        public geolocation: Geolocation,
+        public navParams: NavParams,
+        public tccdApi: TccdApiService,
+        public http: Http
     ) {}
 
     ionViewDidLoad() {
+
+        this.getSearchResults();
         this.loadMap();
     }
 
     loadMap() {
-        /* console.log("loadMap ignited");
-        let latLng = new google.maps.LatLng(-34.929, 138.601);
-
-        console.log("loadMap latLng", JSON.stringify(latLng));
-        let mapOptions = {
-            center: latLng,
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        console.log("loadMap mapOptions", JSON.stringify(mapOptions));
-        this.map = new google.maps.Map(
-            this.mapElement.nativeElement,
-            mapOptions
-        );
-
-        console.log("loadMap map", this.map); */
-
         this.geolocation.getCurrentPosition().then(
             position => {
                 let latLng = new google.maps.LatLng(
@@ -105,4 +97,39 @@ export class MapPage {
     //     }
     //     }
     // }
+
+    getSearchResults() {
+        this.value = this.navParams.get('value');
+        this.results = [];
+        const url = `http://tccdirectory.1click.pf/api/search`;
+        
+        return this.http.post(url, { 'skills': this.value })
+        .map(res => res.json())
+        .subscribe((data) => {
+            for (let i = 0; i < data.length; i++) {
+                if (this.results.indexOf(data[i]) == -1) {
+                this.results.push(data[i]);
+                }        
+            }
+            console.log('Développeur: ', this.results);
+            console.log('Critères de recherche', this.value);
+            return this.results;
+        })
+    }
+
+    addResultsMarker() {
+        let marker, i;
+
+        for (i = 0; i < this.results.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(this.results[i].latitude, this.results[i].longitude),
+                map: this.map
+            });
+        }
+    }
+
+    goToListPage(){
+        this.navCtrl.push(ListPage, this.value)
+    }
+
 }

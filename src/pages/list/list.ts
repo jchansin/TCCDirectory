@@ -1,7 +1,9 @@
+import { CallNumber } from '@ionic-native/call-number';
 import { FavoritesPage } from './../favorites/favorites';
 import { SearchPage } from './../search/search';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { SMS } from '@ionic-native/sms';
 
 /**
  * Generated class for the ListPage page.
@@ -17,7 +19,8 @@ import { NavController, NavParams } from 'ionic-angular';
 export class ListPage {
 
     results = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private callSvc: CallNumber, private sms: SMS) {
   }
 
   ionViewDidLoad() {
@@ -40,5 +43,37 @@ export class ListPage {
     console.log(JSON.stringify(this.results));
 
 }
+
+    // async CallNumber():Promise<any>{
+    //     try {
+    //         await this.call.callNumber(String(this.results), true);
+    //     }
+    //     catch(e){
+    //         console.log(e);
+    //     }
+    // }
+
+    CallNumber(){
+        this.callSvc.callNumber('87285738', true).then(() => {
+            console.log('call worked');
+        }).catch((err) => {
+            alert(JSON.stringify(err))
+        })
+    }
+
+    SendSMS(){
+        var options : {
+            replaceLineBreaks: false,
+            android: {
+                intent: 'INTENT'
+            }
+        }
+        this.sms.send('87285738', 'Message', options).then(() => {
+            console.log('sms worked');
+        }).catch((err) => {
+            alert(JSON.stringify(err))
+        })
+    }
+
 
 }

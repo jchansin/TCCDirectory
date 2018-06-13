@@ -55,6 +55,8 @@ import { LocationsProvider } from '../providers/locations/locations';
     SQLite,
     TccdApiService,
     Geolocation,
+    CallNumber,
+    SMS,
     DatabaseProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConnectivityProvider,

@@ -25,7 +25,15 @@
                         <img src={{result.logo}}>
                 </ion-avatar>
                 <h2>{{result.name}}</h2>
+                <button ion-button (click)="CallNumber()" > Call </button>
+                <button ion-button  (click)="SendSMS()"> Sms </button>
+                <!-- <button ion-fab (click)="{{result.phone}}">
+                <ion-icon name="call"></ion-icon> -->
+            <!-- </button> -->
         </ion-item>
+
+
+
     </ion-list>
 
 </ion-content>

@@ -1,6 +1,13 @@
-.ios, .md {
+.ios, .md, .android {
 
-    home-page {
+    map-page {
+
+        ion-content {
+          @include linear-gradient(left,$green-and-blue);
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          background-size: cover;
+        }
 
       .scroll {
         height: 100%
@@ -15,3 +22,4 @@
     width: 100%;
     height: 100%;
   }
+

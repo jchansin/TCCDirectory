@@ -1,6 +1,6 @@
 <ion-header>
 
-    <ion-navbar>
+    <ion-navbar transparent>
         <ion-buttons end>
             <button ion-button (click)="goToSearchPage()">
                 <ion-icon name="md-search"></ion-icon>
@@ -17,16 +17,24 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="vertical-align-content">
 
     <ion-list>
-        <ion-item *ngFor="let result of results">
+
+        <ion-item *ngFor="let result of results" style="color: #333; background: transparent" >
                 <ion-avatar item-start>
                         <img src={{result.logo}}>
                 </ion-avatar>
                 <h2>{{result.name}}</h2>
-                <button ion-button (click)="CallNumber()" > Call </button>
-                <button ion-button  (click)="SendSMS()"> Sms </button>
+
+                <button ion-button icon-only (click)="CallNumber()" item-end style="background: transparent">
+                        <ion-icon ios="ios-call" md="md-call"></ion-icon>
+                </button>
+
+                <button ion-button icon-only (click)="SendSMS()" item-end style="background: transparent">
+                        <ion-icon ios="ios-mail" md="md-mail"></ion-icon>
+                </button>
+
                 <!-- <button ion-fab (click)="{{result.phone}}">
                 <ion-icon name="call"></ion-icon> -->
             <!-- </button> -->

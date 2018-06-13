@@ -1,19 +1,19 @@
-
     <ion-header>
+
         <ion-navbar>
-            <ion-title>
-                Carte des résultats
-            </ion-title>
-            <ion-buttons end>
-                <button ion-button (click)="addResultsMarker()">
-                    <ion-icon name="add"></ion-icon>Afficher les résultats</button>
-            </ion-buttons>
             <ion-buttons end>
                 <button ion-button (click)="goToListPage()">
                     <ion-icon name="md-list"></ion-icon>
                 </button>
             </ion-buttons>
+            <ion-buttons end>
+                <button ion-button (click)="addResultsMarker()">
+                    <ion-icon name="add"></ion-icon>Afficher les résultats</button>
+            </ion-buttons>
+
+            <ion-title>Carte des résultats</ion-title>
         </ion-navbar>
+
     </ion-header>
 
 <ion-content padding>
@@ -46,5 +46,5 @@
       </ion-list>
     </ion-content>
   </ion-menu>
-  
+
   <ion-nav id="nav" #content [root]="MapPage"></ion-nav>

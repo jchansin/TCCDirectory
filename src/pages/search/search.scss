@@ -1,3 +1,19 @@
-#searchButton {
-    margin: 0 auto;
+page-search {
+
+    ion-content {
+      @include linear-gradient(left,$green-and-blue);
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+    }
+
+  }
+  #searchButton {
+    margin-left: 25%;
+    width: 50%;
+    position: fixed;
+    left: 0;
+    bottom: 10px;
+    right: 0;
+
 }

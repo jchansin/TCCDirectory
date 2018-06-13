@@ -16,18 +16,29 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ListPage {
 
+    results = [];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListPage');
+    this.addListResults();
   }
+
   goToSearchPage(){
     //   console.log('ionViewDidLoad MapPage');
       this.navCtrl.setRoot(SearchPage);
   }
+
   goToFavoritesPage() {
       this.navCtrl.setRoot(FavoritesPage);
   }
+
+  addListResults() {
+    this.results = [];
+    this.results = this.navParams.get('mapResults');
+    console.log(JSON.stringify(this.results));
+
+}
 
 }

@@ -19,6 +19,7 @@ export class MapPage {
     mapResults: any;
     menuId: number;
 
+
     constructor(
         public navCtrl: NavController,
         public geolocation: Geolocation,
@@ -105,14 +106,14 @@ export class MapPage {
         this.value = this.navParams.get('value');
         this.results = [];
         const url = `http://tccdirectory.1click.pf/api/search`;
-        
+
         return this.http.post(url, { 'skills': this.value })
         .map(res => res.json())
         .subscribe((data) => {
             for (let i = 0; i < data.length; i++) {
                 if (this.results.indexOf(data[i]) == -1) {
                 this.results.push(data[i]);
-                }        
+                }
             }
             console.log('Développeur: ', this.results);
             console.log('Critères de recherche', this.value);

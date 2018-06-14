@@ -1,9 +1,11 @@
 import { DatabaseProvider } from './../../services/database.service';
 import { FavoritesPage } from './../favorites/favorites';
+// import { ListPage } from './../list/list';
+
 import { MapPage } from './../map/map';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
+// import { Http } from '@angular/http';
 import { TccdApiService } from './../../services/tccdapi.service';
 
 
@@ -18,7 +20,7 @@ export class SearchPage {
   selected_value: string;
   value: string;
 
-  constructor(public database: DatabaseProvider, public navCtrl: NavController, public navParams: NavParams, private http: Http, private tccdApiService: TccdApiService) {
+  constructor(public database: DatabaseProvider, public navCtrl: NavController, public navParams: NavParams, private tccdApiService: TccdApiService) {
 
   }
 

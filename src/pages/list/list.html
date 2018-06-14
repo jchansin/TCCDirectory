@@ -22,27 +22,18 @@
     <ion-list>
 
         <ion-item style="color: #333; background: transparent" *ngFor="let result of results" >
-            
+
                 <ion-avatar item-start>
                         <img src={{result.logo}}>
                 </ion-avatar>
                 <h2>{{result.name}}</h2>
 
-                <button ion-button icon-only (click)="CallNumber()" item-end style="background: transparent">
-                        <ion-icon ios="ios-call" md="md-call"></ion-icon>
-                </button>
-
-                <button ion-button icon-only (click)="SendSMS()" item-end style="background: transparent">
-                        <ion-icon ios="ios-mail" md="md-mail"></ion-icon>
-                </button>
 
                 <button ion-button icon-only (click)="goToInfosPage(result.id)" item-end style="background: transparent">
                     <ion-icon ios="ios-information-circle" md="md-information-circle"></ion-icon>
                 </button>
 
-                <!-- <button ion-fab (click)="{{result.phone}}">
-                <ion-icon name="call"></ion-icon> -->
-            <!-- </button> -->
+
         </ion-item>
 
     </ion-list>

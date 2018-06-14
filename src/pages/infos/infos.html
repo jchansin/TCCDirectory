@@ -1,6 +1,6 @@
 <ion-header>
 
-    <ion-navbar>
+    <ion-navbar style="text-align:center;">
         <ion-title>Détails</ion-title>
     </ion-navbar>
 
@@ -19,7 +19,7 @@
     <br/> Adresse : {{results.adresse}}
     <br/> Tél : {{results.phone}}
     <br/> Mail : {{results.email}}
-    <br/> Site : {{results.website_url}}
+    <br/> Site : <a href="{{results.website_url}}" (click)="goToBrowser(results.website_url)">{{results.website_url}}</a>
     <br/>
     <hr/> Horaires :
     <br/> Lundi : {{results.monday_start}} - {{results.monday_end}}
@@ -30,10 +30,26 @@
     <br/> Samedi : {{results.saturday_start}} - {{results.saturday_end}}
     <br/> Dimanche : {{results.sunday_start}} - {{results.sunday_end}}
     <br/>
-    <hr/> Facebook : {{results.facebook_url}}
-    <br/> Twitter : {{results.twitter_url}}
-    <br/> LinkedIn : {{results.linkedin_url}}
+    <hr/> Facebook : <a href="{{results.website_url}}" (click)="goToBrowser(results.website_url)">{{results.facebook_url}}</a>
+    <br/> Twitter : <a href="{{results.website_url}}" (click)="goToBrowser(results.website_url)">{{results.twitter_url}}</a>
+    <br/> LinkedIn : <a href="{{results.website_url}}" (click)="goToBrowser(results.website_url)">{{results.linkedin_url}}</a>
     <br/>
+    <hr/>
+    <button ion-button icon-only (click)="callNumber(results.phone)" item-end style="background: transparent">
+      <ion-icon ios="ios-call" md="md-call"></ion-icon>
+    </button>
+
+    <button ion-button icon-only (click)="sendSMS(results.phone)" item-end style="background: transparent">
+          <ion-icon ios="ios-mail" md="md-mail"></ion-icon>
+    </button>
+
+    <button ion-button icon-only (click)="testFavorite(results.id, results.name)" item-end style="background: transparent">
+      <ion-icon ios="ios-information-circle" md="md-information-circle"></ion-icon>
+    </button>
+
+    <!-- <button ion-button icon-only (click)="calcDirections(results.latitude, results.longitude)" item-end style="background: transparent">
+        <ion-icon ios="ios-information-circle" md="md-information-circle"></ion-icon>
+    </button> -->
 
 
 

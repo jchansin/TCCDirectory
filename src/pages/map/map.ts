@@ -35,7 +35,7 @@ export class MapPage {
 
 
         let mapOptions = {
-            zoom: 8,
+            zoom: 6,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         
@@ -44,8 +44,31 @@ export class MapPage {
             mapOptions
         );
 
-        this.getSearchResults();
         this.loadMap();
+        this.getSearchResults();
+    }
+
+
+    // Récupère les filtres de SearchPage et envoie une requête à l'API
+    getSearchResults() {
+        this.value = this.navParams.get('value');
+        this.results = [];
+        const url = `http://tccdirectory.1click.pf/api/search`;
+
+        return this.http.post(url, { 'skills': this.value })
+        .map(res => res.json())
+        .subscribe((data) => {
+            for (let i = 0; i < data.length; i++) {
+                if (this.results.indexOf(data[i]) == -1) {
+                this.results.push(data[i]);
+                }
+            }
+            console.log('Développeur: ', this.results);
+            console.log('Critères de recherche', this.value);
+            this.addResultsMarker();
+            return this.results;
+        })
+
     }
 
     // Initialise la carte centrée sur la position du téléphone
@@ -93,52 +116,17 @@ export class MapPage {
     // Fenêtre d'information liée au marqueur initial
     addInfoWindow(marker, content) {
         let infoWindow = new google.maps.InfoWindow({
-            content: content
+            content: "Vous êtes ici"
         });
 
         google.maps.event.addListener(marker, "click", () => {
             infoWindow.open(this.map, marker);
         });
+
+        console.log("Avant addResultsMarker");
+
     }
-
-    // addMarkerContact () {
-    //     var marker, i;
-
-    //     for (i = 0; i < data.length; i++) {
-    //     marker = new google.maps.Marker({
-    //         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-    //         map: map
-    //     });
-
-    //     google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    //         return function() {
-    //         infowindow.setContent(locations[i][0]);
-    //         infowindow.open(map, marker);
-    //         }
-    //     })(marker, i));
-    //     }
-    //     }
-    // }
-
-    // Récupère les filtres de SearchPage et envoie une requête à l'API
-    getSearchResults() {
-        this.value = this.navParams.get('value');
-        this.results = [];
-        const url = `http://tccdirectory.1click.pf/api/search`;
-
-        return this.http.post(url, { 'skills': this.value })
-        .map(res => res.json())
-        .subscribe((data) => {
-            for (let i = 0; i < data.length; i++) {
-                if (this.results.indexOf(data[i]) == -1) {
-                this.results.push(data[i]);
-                }666666666666
-            }
-            console.log('Développeur: ', this.results);
-            console.log('Critères de recherche', this.value);
-            return this.results;
-        })
-    }
+    
 
     // Ajoute des marqueurs pour chaque résultat de la recherche
     addResultsMarker() {
@@ -160,23 +148,37 @@ export class MapPage {
         }
     }
 
-    // // Ajouter un toggle menu aux marqueurs
-    // addMenuToggle(x, i) {
-    //     console.log(this.results[i].name);
-    //     this.tccdApi.getBusiness(x)
-    //     .then((results) => {
-    //         this.businessInfo = results;
-    //         console.log('Données de addMenuToggle :', this.businessInfo)
-    //         this.menuCtrl.toggle(this.businessInfo);
-    //     })
-    //     .catch((e) => console.log('Erreur dans addMenuToggle', (e)))
-    // }
+    /* initDirections(destLat, destLng) {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = this.map;
+        let destLatLng = new google.maps.LatLng(destLat, destLng)
 
+        directionsDisplay.setMap(map);
+        console.log('test initDirections');
+   
+        this.calculateAndDisplayRoute(directionsService, directionsDisplay, destLatLng);
+       
+      }
+    
+    calculateAndDisplayRoute(directionsService, directionsDisplay, destLatLng) {
 
-    // toggleMenu() {
-    //     this.menuId = x;
-    //     this.menuCtrl.toggle();
-    // }
+        let latLng = new google.maps.LatLng(
+            48.8584,
+            2.2945)
+        directionsService.route({
+            origin: latLng,
+            destination: destLatLng,
+            travelMode: 'DRIVING'
+        }, function(response, status) {
+            if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+            } else {
+            window.alert('Directions request failed due to ' + status);
+            }
+        });
+    } */
+
 
     goToListPage(){
         this.mapResults = [];

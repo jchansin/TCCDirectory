@@ -37,9 +37,9 @@ export class SearchPage {
 
   }
 
-  goToListPage(){
-      this.navCtrl.push(ListPage)
-  }
+//   goToListPage(){
+//       this.navCtrl.push(ListPage)
+//   }
 
   goToFavoritesPage() {
     this.navCtrl.push(FavoritesPage);

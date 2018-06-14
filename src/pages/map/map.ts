@@ -1,3 +1,4 @@
+import { FavoritesPage } from './../favorites/favorites';
 import { Http } from '@angular/http';
 import { TccdApiService } from './../../services/tccdapi.service';
 import { Geolocation } from "@ionic-native/geolocation";
@@ -144,6 +145,7 @@ export class MapPage {
             // })(marker, i, this);
 
             
+
         }
     }
 
@@ -171,6 +173,9 @@ export class MapPage {
 
     goToInfosPage(){
         this.navCtrl.push(InfosPage, this.results)
+    }
+    goToFavoritesPage() {
+        this.navCtrl.push(FavoritesPage);
     }
 
 }

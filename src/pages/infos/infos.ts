@@ -1,4 +1,4 @@
-// import { MapPage } from './../map/map';
+import { MapPage } from './../map/map';
 import { DatabaseProvider } from './../../services/database.service';
 import { TccdApiService } from './../../services/tccdapi.service';
 import { Component } from '@angular/core';
@@ -7,7 +7,6 @@ import { CallNumber } from '@ionic-native/call-number';
 import { SMS } from '@ionic-native/sms';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Toast } from '@ionic-native/toast';
-
 
 @Component({
   selector: 'page-infos',
@@ -30,7 +29,6 @@ export class InfosPage {
     private sms: SMS, 
     private iab: InAppBrowser, 
     private db: DatabaseProvider, 
-    // private mapPage: MapPage,
     private toast: Toast
   ) {
   }
@@ -87,10 +85,9 @@ export class InfosPage {
     this.db.testFavorite(x, y);
   }
 
-  /* calcDirections(x,y) {
-    this.navCtrl.push(MapPage);
-    this.mapPage.initDirections(x,y);
-  } */
+  calcDirections(x,y) {
+    this.navCtrl.push(MapPage, {'x':x,'y':y, "fromPage":"infos"});
+  }
 
   sendReport(x) {
     this.tccdApi.getAbus(x);

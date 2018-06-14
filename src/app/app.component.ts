@@ -1,19 +1,15 @@
 import { SearchPage } from './../pages/search/search';
-import { MapPage } from './../pages/map/map';
-// import { HomePage } from "./../pages/home/home";
-
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { Platform } from "ionic-angular";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
-
+import { NavController } from 'ionic-angular';
 import { WelcomePage } from './../pages/welcome/welcome';
 
 @Component({
     templateUrl: "app.html"
 })
 export class MyApp {
-
     rootPage: any = SearchPage;
 
     constructor(

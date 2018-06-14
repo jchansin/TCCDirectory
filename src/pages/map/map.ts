@@ -29,25 +29,34 @@ export class MapPage {
         public tccdApi: TccdApiService,
         public http: Http,
         public menuCtrl: MenuController
-    ) {}
+    ) {
+    }
 
     ionViewDidLoad() {
 
+        if(this.navParams.get('fromPage') == "infos"){
+            this.showDirection();
+        }else{
+            let mapOptions = {
+                zoom: 6,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            
+            this.map = new google.maps.Map(
+                this.mapElement.nativeElement,
+                mapOptions
+            );
 
-        let mapOptions = {
-            zoom: 6,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        
-        this.map = new google.maps.Map(
-            this.mapElement.nativeElement,
-            mapOptions
-        );
-
-        this.loadMap();
-        this.getSearchResults();
+            this.loadMap();
+            this.getSearchResults();
+        }
     }
 
+    showDirection() {
+        let x = this.navParams.get('x');
+        let y = this.navParams.get('y');
+        this.initDirections(x,y);
+    }
 
     // Récupère les filtres de SearchPage et envoie une requête à l'API
     getSearchResults() {
@@ -148,11 +157,11 @@ export class MapPage {
         }
     }
 
-    /* initDirections(destLat, destLng) {
+    initDirections(destLat, destLng) {
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var map = this.map;
-        let destLatLng = new google.maps.LatLng(destLat, destLng)
+        let destLatLng = new google.maps.LatLng(destLat, destLng);
 
         directionsDisplay.setMap(map);
         console.log('test initDirections');
@@ -165,7 +174,7 @@ export class MapPage {
 
         let latLng = new google.maps.LatLng(
             48.8584,
-            2.2945)
+            2.2945);
         directionsService.route({
             origin: latLng,
             destination: destLatLng,
@@ -177,7 +186,7 @@ export class MapPage {
             window.alert('Directions request failed due to ' + status);
             }
         });
-    } */
+    }
 
 
     goToListPage(){

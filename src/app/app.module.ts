@@ -38,7 +38,7 @@ import { LocationsProvider } from '../providers/locations/locations';
     MapPage,
     ListPage,
     FavoritesPage,
-    InfosPage
+    InfosPage,
   ],
   imports: [
     HttpModule,
@@ -53,7 +53,7 @@ import { LocationsProvider } from '../providers/locations/locations';
     MapPage,
     ListPage,
     FavoritesPage,
-    InfosPage
+    InfosPage,
   ],
   providers: [
     StatusBar,
@@ -66,6 +66,7 @@ import { LocationsProvider } from '../providers/locations/locations';
     SMS,
     DatabaseProvider,
     Toast,
+    MapPage,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConnectivityProvider,
     GoogleMapsProvider,

@@ -4,6 +4,7 @@ import { Geolocation } from "@ionic-native/geolocation";
 import { Component, ViewChild, ElementRef } from "@angular/core";
 import { NavController, NavParams, MenuController } from "ionic-angular";
 import { ListPage } from '../list/list';
+import { InfosPage } from './../infos/infos';
 
 declare var google;
 
@@ -16,7 +17,6 @@ export class MapPage {
     map: any;
     value: string;
     results = [];
-    mapResults: any;
     menuId: number;
     businessInfo: any;
 
@@ -147,25 +147,30 @@ export class MapPage {
         }
     }
 
-    addMenuToggle(x, i) {
-        console.log(this.results[i].name);
-        this.tccdApi.getBusiness(x)
-        .then((results) => {
-            this.businessInfo = results;
-            console.log('Données de addMenuToggle :', this.businessInfo)
-            this.menuCtrl.toggle(this.businessInfo);
-        })
-        .catch((e) => console.log('Erreur dans addMenuToggle', (e)))
-    }
+    // // Ajouter un toggle menu aux marqueurs
+    // addMenuToggle(x, i) {
+    //     console.log(this.results[i].name);
+    //     this.tccdApi.getBusiness(x)
+    //     .then((results) => {
+    //         this.businessInfo = results;
+    //         console.log('Données de addMenuToggle :', this.businessInfo)
+    //         this.menuCtrl.toggle(this.businessInfo);
+    //     })
+    //     .catch((e) => console.log('Erreur dans addMenuToggle', (e)))
+    // }
 
 
-    toggleMenu() {
-        //this.menuId = x;
-        this.menuCtrl.toggle();
-    }
+    // toggleMenu() {
+    //     this.menuId = x;
+    //     this.menuCtrl.toggle();
+    // }
 
     goToListPage(){
-        this.navCtrl.push(ListPage, {mapResults: this.results})
+        this.navCtrl.push(ListPage, this.results)
+    }
+
+    goToInfosPage(){
+        this.navCtrl.push(InfosPage, this.results)
     }
 
 }

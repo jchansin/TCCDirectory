@@ -42,7 +42,7 @@ export class ListPage {
 
   addListResults() {
     this.results = [];
-    this.results = this.navParams.get('mapResults');
+    this.results = this.navParams.get('results');
     console.log(this.results);
 
 }

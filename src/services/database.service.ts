@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-import { WelcomePage } from '../pages/welcome/welcome';
 
 @Injectable()
 
@@ -43,16 +42,17 @@ export class DatabaseProvider {
     // Insérer une entreprise en "favoris"
     public insertFavorite(business_id, favorite, name): any {
         this.db.executeSql(
-            "INSERT INTO `favorites` (business_id, favorite, name) VALUES (" + business_id + ", " + favorite + ", " + name + ");", {})
+            "INSERT INTO `favorites` (business_id, favorite, name) VALUES (" + business_id + ", " + favorite + ", " + name + ");", {}
+        )
         .then(() => console.log('Insertion en favoris réussie !'))
         .catch(err => console.log('Erreur dans insertFavorite', JSON.stringify(err)))
     }
 
 
     // Tester l'existence d'une entreprise en favoris
-    public selectFavorite(): any {
+    public selectFavorite(x): any {
         this.db.executeSql(
-            "SELECT * FROM favorites WHERE business_id='14';", {}
+            "SELECT * FROM favorites WHERE business_id=" + x + ";", {}
         )
         .then((data) => console.log(JSON.stringify(data)))
         .catch(err => console.log('Erreur dans selectFavorite', JSON.stringify(err)))

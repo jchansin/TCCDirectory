@@ -1,3 +1,4 @@
+import { InfosPage } from './../infos/infos';
 import { TccdApiService } from './../../services/tccdapi.service';
 import { MenuController } from 'ionic-angular';
 import { MapPage } from './../map/map';
@@ -23,6 +24,7 @@ import { SMS } from '@ionic-native/sms';
 export class ListPage {
 
     results = [];
+    businessId: any;
     businessInfo = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private callSvc: CallNumber, private sms: SMS, private menuCtrl: MenuController, private tccdApi: TccdApiService) {
@@ -45,6 +47,10 @@ export class ListPage {
   goToMapPage() {
     this.navCtrl.push(MapPage);
 }
+
+    goToInfosPage(x) {
+        this.navCtrl.push(InfosPage, {businessId: x})
+    }
 
   addListResults() {
     this.results = [];

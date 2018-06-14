@@ -35,7 +35,7 @@ export class MapPage {
 
 
         let mapOptions = {
-            zoom: 15,
+            zoom: 8,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         
@@ -132,7 +132,7 @@ export class MapPage {
             for (let i = 0; i < data.length; i++) {
                 if (this.results.indexOf(data[i]) == -1) {
                 this.results.push(data[i]);
-                }
+                }666666666666
             }
             console.log('Développeur: ', this.results);
             console.log('Critères de recherche', this.value);
@@ -149,13 +149,13 @@ export class MapPage {
                 position: new google.maps.LatLng(this.results[i].latitude, this.results[i].longitude),
                 map: this.map
             });      
-    
-            // google.maps.event.addListener(marker, "click", (marker, i) => {
-            //     this.toggleMenu();
-            //     console.log(this.results[i].latitude);
-            // })(marker, i, this);
 
             
+            google.maps.event.addListener(marker, 'click', (function(marker, i, context) {
+                return function() {
+                  context.navCtrl.push(InfosPage, {businessId: context.results[i].id});
+                }
+              })(marker, i, this));
 
         }
     }

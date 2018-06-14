@@ -1,0 +1,37 @@
+{
+  "name": "vivid-icons",
+  "description": "a JavaScript library which is built to easily customize and use the SVG Icons with a blaze.",
+  "authors": [
+    "Nitish Kumar"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "vivid",
+    "vivid",
+    "vivid icons",
+    "vivid icons library",
+    "svg",
+    "svg icons js",
+    "svg icons library",
+    "svg js",
+    "svg javascript library"
+  ],
+  "homepage": "https://webkul.github.io/vivid",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "60a5eaefc0",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "60a5eaefc022ea0b9e7600f1ffb03d6ce5b7008d"
+  },
+  "_source": "https://github.com/webkul/vivid.git",
+  "_target": "*",
+  "_originalSource": "vivid-icons",
+  "_direct": true
+}

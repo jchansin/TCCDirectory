@@ -34,21 +34,21 @@ export class MapPage {
 
     ionViewDidLoad() {
 
+        let mapOptions = {
+            zoom: 6,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        
+        this.map = new google.maps.Map(
+            this.mapElement.nativeElement,
+            mapOptions
+        );
 
-        if(this.navParams.get('fromPage') == "infos"){
+        this.loadMap();
+
+        if(this.navParams.get('fromPage') == "infos") {
             this.showDirection();
-        }else{
-            let mapOptions = {
-                zoom: 6,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            
-            this.map = new google.maps.Map(
-                this.mapElement.nativeElement,
-                mapOptions
-            );
-
-            this.loadMap();
+        } else {
             this.getSearchResults();
         }
     }

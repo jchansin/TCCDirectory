@@ -21,7 +21,8 @@
 
     <ion-list>
 
-        <ion-item *ngFor="let result of results" style="color: #333; background: transparent" >
+        <ion-item style="color: #333; background: transparent" *ngFor="let result of results" >
+            
                 <ion-avatar item-start>
                         <img src={{result.logo}}>
                 </ion-avatar>
@@ -39,8 +40,6 @@
                 <ion-icon name="call"></ion-icon> -->
             <!-- </button> -->
         </ion-item>
-
-
 
     </ion-list>
 

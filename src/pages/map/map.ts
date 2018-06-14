@@ -5,6 +5,7 @@ import { Geolocation } from "@ionic-native/geolocation";
 import { Component, ViewChild, ElementRef } from "@angular/core";
 import { NavController, NavParams, MenuController } from "ionic-angular";
 import { ListPage } from '../list/list';
+import { InfosPage } from './../infos/infos';
 
 declare var google;
 
@@ -17,9 +18,9 @@ export class MapPage {
     map: any;
     value: string;
     results = [];
-    mapResults: any;
+    mapResults = [];
     menuId: number;
-
+    businessInfo: any;
 
     constructor(
         public navCtrl: NavController,
@@ -32,41 +33,56 @@ export class MapPage {
 
     ionViewDidLoad() {
 
+
+        let mapOptions = {
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        
+        this.map = new google.maps.Map(
+            this.mapElement.nativeElement,
+            mapOptions
+        );
+
         this.getSearchResults();
         this.loadMap();
     }
 
+    // Initialise la carte centrée sur la position du téléphone
     loadMap() {
-        this.geolocation.getCurrentPosition().then(
-            position => {
-                let latLng = new google.maps.LatLng(
-                    position.coords.latitude,
-                    position.coords.longitude
-                );
+        console.log('Load map');
+        
+        // *** Récupère la position du téléphone, centre la carte sur cette position et y ajoute un marqueur ***
+        // this.geolocation.getCurrentPosition().then((position) => {
+        //         let latLng = new google.maps.LatLng(
+        //             position.coords.latitude,
+        //             position.coords.longitude
+        //         );
+        //         this.map.setCenter(latLng);
+        //         this.addMarker();
+        //         console.log(position);
+        //     })
+        //     .catch((error) => {
+        //         console.log('Error getting location', error);
+        //       });
 
-                let mapOptions = {
-                    center: latLng,
-                    zoom: 15,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-
-                this.map = new google.maps.Map(
-                    this.mapElement.nativeElement,
-                    mapOptions
-                );
-                this.addMarker();
-            },
-            err => {
-                console.log(err);
-            }
-        );
+        let latLng = new google.maps.LatLng(
+            48.8584,
+            2.2945
+        )
+        this.map.setCenter(latLng);
+        this.addMarker();
+        
     }
 
+    // Ajoute un marqueur au centre de la carte
     addMarker() {
         let marker = new google.maps.Marker({
             map: this.map,
             animation: google.maps.Animation.DROP,
-            position: this.map.getCenter()
+            position: this.map.getCenter(),
+            title: "Vous êtes ici",
+            label: "Moi"
         });
 
         let content = "<h4>Information!</h4>";
@@ -74,6 +90,7 @@ export class MapPage {
         this.addInfoWindow(marker, content);
     }
 
+    // Fenêtre d'information liée au marqueur initial
     addInfoWindow(marker, content) {
         let infoWindow = new google.maps.InfoWindow({
             content: content
@@ -103,6 +120,7 @@ export class MapPage {
     //     }
     // }
 
+    // Récupère les filtres de SearchPage et envoie une requête à l'API
     getSearchResults() {
         this.value = this.navParams.get('value');
         this.results = [];
@@ -122,38 +140,51 @@ export class MapPage {
         })
     }
 
+    // Ajoute des marqueurs pour chaque résultat de la recherche
     addResultsMarker() {
         let marker, i;
-
+        console.log(this.results);
         for (i = 0; i < this.results.length; i++) {
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(this.results[i].latitude, this.results[i].longitude),
                 map: this.map
-            });
+            });      
+    
+            // google.maps.event.addListener(marker, "click", (marker, i) => {
+            //     this.toggleMenu();
+            //     console.log(this.results[i].latitude);
+            // })(marker, i, this);
 
-            /* let contentString = "<div>" + "<img src='" +
-                this.results[i].logo + "'  style = 'display: block; margin-left: auto; margin-right: auto; width: 50%; height: 50%'/>" + '</div>' +
-                "<hr/><div style = 'text-align: center'><h2>" + this.results[i].name + '</h2></div>';
-            let infoWindow = new google.maps.InfoWindow({
-                content: contentString,
-                maxWidth: 256
-            }); */
+            
 
-
-            google.maps.event.addListener(marker, "click", () => {
-                this.toggleMenu();
-                console.log(JSON.stringify(this.results[i].latitude));
-            });
         }
     }
 
-    toggleMenu() {
-        //this.menuId = x;
-        this.menuCtrl.toggle();
-    }
+    // // Ajouter un toggle menu aux marqueurs
+    // addMenuToggle(x, i) {
+    //     console.log(this.results[i].name);
+    //     this.tccdApi.getBusiness(x)
+    //     .then((results) => {
+    //         this.businessInfo = results;
+    //         console.log('Données de addMenuToggle :', this.businessInfo)
+    //         this.menuCtrl.toggle(this.businessInfo);
+    //     })
+    //     .catch((e) => console.log('Erreur dans addMenuToggle', (e)))
+    // }
+
+
+    // toggleMenu() {
+    //     this.menuId = x;
+    //     this.menuCtrl.toggle();
+    // }
 
     goToListPage(){
+        this.mapResults = [];
         this.navCtrl.push(ListPage, {mapResults: this.results})
+    }
+
+    goToInfosPage(){
+        this.navCtrl.push(InfosPage, this.results)
     }
     goToFavoritesPage() {
         this.navCtrl.push(FavoritesPage);

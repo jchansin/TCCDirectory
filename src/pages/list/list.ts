@@ -1,3 +1,5 @@
+import { TccdApiService } from './../../services/tccdapi.service';
+import { MenuController } from 'ionic-angular';
 import { MapPage } from './../map/map';
 import { CallNumber } from '@ionic-native/call-number';
 import { FavoritesPage } from './../favorites/favorites';
@@ -20,8 +22,9 @@ import { SMS } from '@ionic-native/sms';
 export class ListPage {
 
     results = [];
+    businessInfo = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private callSvc: CallNumber, private sms: SMS) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private callSvc: CallNumber, private sms: SMS, private menuCtrl: MenuController, private tccdApi: TccdApiService) {
   }
 
   ionViewDidLoad() {
@@ -45,7 +48,7 @@ export class ListPage {
   addListResults() {
     this.results = [];
     this.results = this.navParams.get('mapResults');
-    console.log(JSON.stringify(this.results));
+    console.log(this.results);
 
 }
 
@@ -59,7 +62,7 @@ export class ListPage {
     // }
 
     CallNumber(){
-        this.callSvc.callNumber('87285738', true).then(() => {
+        this.callSvc.callNumber('87213406', true).then(() => {
             console.log('call worked');
         }).catch((err) => {
             alert(JSON.stringify(err))
@@ -73,12 +76,24 @@ export class ListPage {
                 intent: 'INTENT'
             }
         }
-        this.sms.send('87285738', 'Message', options).then(() => {
+        this.sms.send('87213406', 'Message', options).then(() => {
             console.log('sms worked');
         }).catch((err) => {
             alert(JSON.stringify(err))
         })
     }
+
+    // showMenu(x) {
+    //     this.businessInfo = [];
+    //     console.log("Show Menu", x)
+    //     this.tccdApi.getBusiness(x.id)
+    //     .then ((response) => {
+    //         this.businessInfo = response;
+    //         this.menuCtrl.open("listMenu");
+    //         console.log(this.businessInfo);
+    //     })
+    //     .catch (e => console.log(JSON.stringify(e)))
+    // }
 
 
 }

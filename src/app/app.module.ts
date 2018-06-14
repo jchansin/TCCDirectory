@@ -16,6 +16,7 @@ import { SearchPage } from '../pages/search/search';
 import { MapPage } from '../pages/map/map';
 import { ListPage } from '../pages/list/list';
 import { FavoritesPage } from '../pages/favorites/favorites';
+import { InfosPage } from './../pages/infos/infos';
 
 import { HttpModule } from '@angular/http';
 import { TccdApiService } from '../services/tccdapi.service';
@@ -33,7 +34,8 @@ import { LocationsProvider } from '../providers/locations/locations';
     SearchPage,
     MapPage,
     ListPage,
-    FavoritesPage
+    FavoritesPage,
+    InfosPage
   ],
   imports: [
     HttpModule,
@@ -47,7 +49,8 @@ import { LocationsProvider } from '../providers/locations/locations';
     SearchPage,
     MapPage,
     ListPage,
-    FavoritesPage
+    FavoritesPage,
+    InfosPage
   ],
   providers: [
     StatusBar,

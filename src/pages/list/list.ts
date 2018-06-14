@@ -1,3 +1,5 @@
+import { TccdApiService } from './../../services/tccdapi.service';
+import { MenuController } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { FavoritesPage } from './../favorites/favorites';
 import { SearchPage } from './../search/search';
@@ -19,8 +21,9 @@ import { SMS } from '@ionic-native/sms';
 export class ListPage {
 
     results = [];
+    businessInfo = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private callSvc: CallNumber, private sms: SMS) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private callSvc: CallNumber, private sms: SMS, private menuCtrl: MenuController, private tccdApi: TccdApiService) {
   }
 
   ionViewDidLoad() {
@@ -34,13 +37,13 @@ export class ListPage {
   }
 
   goToFavoritesPage() {
-      this.navCtrl.setRoot(FavoritesPage);
+      this.navCtrl.push(FavoritesPage);
   }
 
   addListResults() {
     this.results = [];
     this.results = this.navParams.get('mapResults');
-    console.log(JSON.stringify(this.results));
+    console.log(this.results);
 
 }
 
@@ -74,6 +77,18 @@ export class ListPage {
             alert(JSON.stringify(err))
         })
     }
+
+    // showMenu(x) {
+    //     this.businessInfo = [];
+    //     console.log("Show Menu", x)
+    //     this.tccdApi.getBusiness(x.id)
+    //     .then ((response) => {
+    //         this.businessInfo = response;
+    //         this.menuCtrl.open("listMenu");
+    //         console.log(this.businessInfo);
+    //     })
+    //     .catch (e => console.log(JSON.stringify(e)))
+    // }
 
 
 }

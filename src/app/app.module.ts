@@ -58,6 +58,7 @@ import { LocationsProvider } from '../providers/locations/locations';
     SQLite,
     TccdApiService,
     Geolocation,
+    InAppBrowser,
     CallNumber,
     SMS,
     DatabaseProvider,

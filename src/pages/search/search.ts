@@ -1,6 +1,5 @@
 import { DatabaseProvider } from './../../services/database.service';
 import { FavoritesPage } from './../favorites/favorites';
-import { ListPage } from './../list/list';
 import { MapPage } from './../map/map';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -37,15 +36,10 @@ export class SearchPage {
 
   }
 
-//   goToListPage(){
-//       this.navCtrl.push(ListPage)
-//   }
-
   goToFavoritesPage() {
     this.navCtrl.push(FavoritesPage);
   }
 
-  //Get Selected Value
   showselected($event) {
     this.selected_value = $event;
     console.log(this.selected_value);

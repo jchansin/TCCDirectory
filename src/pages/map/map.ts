@@ -1,11 +1,11 @@
-import { FavoritesPage } from './../favorites/favorites';
-import { Http } from '@angular/http';
-import { TccdApiService } from './../../services/tccdapi.service';
+import { FavoritesPage } from "./../favorites/favorites";
+import { Http } from "@angular/http";
+import { TccdApiService } from "./../../services/tccdapi.service";
 import { Geolocation } from "@ionic-native/geolocation";
 import { Component, ViewChild, ElementRef } from "@angular/core";
 import { NavController, NavParams, MenuController } from "ionic-angular";
-import { ListPage } from '../list/list';
-import { InfosPage } from './../infos/infos';
+import { ListPage } from "../list/list";
+import { InfosPage } from "./../infos/infos";
 
 declare var google;
 
@@ -34,6 +34,7 @@ export class MapPage {
 
     ionViewDidLoad() {
 
+
         if(this.navParams.get('fromPage') == "infos"){
             this.showDirection();
         }else{
@@ -58,32 +59,33 @@ export class MapPage {
         this.initDirections(x,y);
     }
 
+
     // Récupère les filtres de SearchPage et envoie une requête à l'API
     getSearchResults() {
-        this.value = this.navParams.get('value');
+        this.value = this.navParams.get("value");
         this.results = [];
         const url = `http://tccdirectory.1click.pf/api/search`;
 
-        return this.http.post(url, { 'skills': this.value })
-        .map(res => res.json())
-        .subscribe((data) => {
-            for (let i = 0; i < data.length; i++) {
-                if (this.results.indexOf(data[i]) == -1) {
-                this.results.push(data[i]);
+        return this.http
+            .post(url, { skills: this.value })
+            .map(res => res.json())
+            .subscribe(data => {
+                for (let i = 0; i < data.length; i++) {
+                    if (this.results.indexOf(data[i]) == -1) {
+                        this.results.push(data[i]);
+                    }
                 }
-            }
-            console.log('Développeur: ', this.results);
-            console.log('Critères de recherche', this.value);
-            this.addResultsMarker();
-            return this.results;
-        })
-
+                console.log("Développeur: ", this.results);
+                console.log("Critères de recherche", this.value);
+                this.addResultsMarker();
+                return this.results;
+            });
     }
 
     // Initialise la carte centrée sur la position du téléphone
     loadMap() {
-        console.log('Load map');
-        
+        console.log("Load map");
+
         // *** Récupère la position du téléphone, centre la carte sur cette position et y ajoute un marqueur ***
         // this.geolocation.getCurrentPosition().then((position) => {
         //         let latLng = new google.maps.LatLng(
@@ -98,13 +100,9 @@ export class MapPage {
         //         console.log('Error getting location', error);
         //       });
 
-        let latLng = new google.maps.LatLng(
-            48.8584,
-            2.2945
-        )
+        let latLng = new google.maps.LatLng(48.8584, 2.2945);
         this.map.setCenter(latLng);
         this.addMarker();
-        
     }
 
     // Ajoute un marqueur au centre de la carte
@@ -133,9 +131,7 @@ export class MapPage {
         });
 
         console.log("Avant addResultsMarker");
-
     }
-    
 
     // Ajoute des marqueurs pour chaque résultat de la recherche
     addResultsMarker() {
@@ -143,17 +139,24 @@ export class MapPage {
         console.log(this.results);
         for (i = 0; i < this.results.length; i++) {
             marker = new google.maps.Marker({
-                position: new google.maps.LatLng(this.results[i].latitude, this.results[i].longitude),
+                position: new google.maps.LatLng(
+                    this.results[i].latitude,
+                    this.results[i].longitude
+                ),
                 map: this.map
-            });      
+            });
 
-            
-            google.maps.event.addListener(marker, 'click', (function(marker, i, context) {
-                return function() {
-                  context.navCtrl.push(InfosPage, {businessId: context.results[i].id});
-                }
-              })(marker, i, this));
-
+            google.maps.event.addListener(
+                marker,
+                "click",
+                (function(marker, i, context) {
+                    return function() {
+                        context.navCtrl.push(InfosPage, {
+                            businessId: context.results[i].id
+                        });
+                    };
+                })(marker, i, this)
+            );
         }
     }
 
@@ -165,11 +168,11 @@ export class MapPage {
 
         directionsDisplay.setMap(map);
         console.log('test initDirections');
-   
+
         this.calculateAndDisplayRoute(directionsService, directionsDisplay, destLatLng);
-       
+
       }
-    
+
     calculateAndDisplayRoute(directionsService, directionsDisplay, destLatLng) {
 
         let latLng = new google.maps.LatLng(
@@ -188,17 +191,15 @@ export class MapPage {
         });
     }
 
-
-    goToListPage(){
+    goToListPage() {
         this.mapResults = [];
-        this.navCtrl.push(ListPage, {mapResults: this.results})
+        this.navCtrl.push(ListPage, { mapResults: this.results });
     }
 
-    goToInfosPage(){
-        this.navCtrl.push(InfosPage, this.results)
+    goToInfosPage() {
+        this.navCtrl.push(InfosPage, this.results);
     }
     goToFavoritesPage() {
         this.navCtrl.push(FavoritesPage);
     }
-
 }

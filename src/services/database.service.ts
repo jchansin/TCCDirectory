@@ -50,8 +50,8 @@ export class DatabaseProvider {
             )
             .then(data => {
                 console.log(JSON.stringify(data));
-                let favorite = data.rows.item(0).favorite;
                 if (data.rows.length == 1) {
+                    let favorite = data.rows.item(0).favorite;
                     this.toggleFavorite(x, y, favorite);
                 } else {
                     this.insertFavorite(x, y);
@@ -66,12 +66,8 @@ export class DatabaseProvider {
     public insertFavorite(x, y): any {
         this.db
             .executeSql(
-                "INSERT INTO `favorites` (business_id, name, favorite) VALUES (" +
-                    x +
-                    ", " +
-                    y +
-                    ", 1);",
-                {}
+                "INSERT INTO `favorites` (business_id, name, favorite) VALUES (?, ?, 1);",
+                [x, y]
             )
             .then(() => console.log("Insertion en favoris réussie !"))
             .catch(err =>
@@ -84,10 +80,7 @@ export class DatabaseProvider {
         if (z == 1) {
             this.db
                 .executeSql(
-                    "UPDATE `favorites` SET favorite=0 WHERE business_id=" +
-                        x +
-                        ";",
-                    {}
+                    "UPDATE `favorites` SET favorite=0 WHERE business_id=" + x + ";", {}
                 )
                 .then(() => console.log("Effacement de favoris réussi !"))
                 .catch(err =>
@@ -119,7 +112,7 @@ export class DatabaseProvider {
         this.db
             .executeSql("SELECT * FROM favorites WHERE favorite='1';", {})
             .then(data => {
-                console.log(data);
+                console.log('erreur ici ?', JSON.stringify(data));
                 return data;
             })
             .catch(e =>

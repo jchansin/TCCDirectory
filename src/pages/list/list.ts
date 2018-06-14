@@ -1,3 +1,4 @@
+import { MapPage } from './../map/map';
 import { CallNumber } from '@ionic-native/call-number';
 import { FavoritesPage } from './../favorites/favorites';
 import { SearchPage } from './../search/search';
@@ -34,8 +35,12 @@ export class ListPage {
   }
 
   goToFavoritesPage() {
-      this.navCtrl.setRoot(FavoritesPage);
+      this.navCtrl.push(FavoritesPage);
   }
+
+  goToMapPage() {
+    this.navCtrl.push(MapPage);
+}
 
   addListResults() {
     this.results = [];

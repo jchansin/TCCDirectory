@@ -1,3 +1,4 @@
+import { FavoritesPage } from './../favorites/favorites';
 import { Http } from '@angular/http';
 import { TccdApiService } from './../../services/tccdapi.service';
 import { Geolocation } from "@ionic-native/geolocation";
@@ -130,15 +131,15 @@ export class MapPage {
                 map: this.map
             });
 
-            /* let contentString = "<div>" + "<img src='" + 
+            /* let contentString = "<div>" + "<img src='" +
                 this.results[i].logo + "'  style = 'display: block; margin-left: auto; margin-right: auto; width: 50%; height: 50%'/>" + '</div>' +
                 "<hr/><div style = 'text-align: center'><h2>" + this.results[i].name + '</h2></div>';
             let infoWindow = new google.maps.InfoWindow({
                 content: contentString,
                 maxWidth: 256
             }); */
-            
-    
+
+
             google.maps.event.addListener(marker, "click", () => {
                 this.toggleMenu();
                 console.log(JSON.stringify(this.results[i].latitude));
@@ -153,6 +154,9 @@ export class MapPage {
 
     goToListPage(){
         this.navCtrl.push(ListPage, {mapResults: this.results})
+    }
+    goToFavoritesPage() {
+        this.navCtrl.push(FavoritesPage);
     }
 
 }

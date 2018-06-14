@@ -3,9 +3,14 @@
         <ion-navbar>
             <ion-buttons end>
                 <button ion-button (click)="goToListPage()">
-                <i data-vi="menu" data-vi-primary="#C06C84" data-vi-accent="#6C5B7B" data-vi-prop="#355C7D"></i>
+                    <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
                 </button>
             </ion-buttons>
+            <ion-buttons end>
+                    <button ion-button (click)="goToFavoritesPage()">
+                        <ion-icon ios="ios-star" md="md-star"></ion-icon>
+                    </button>
+                </ion-buttons>
             <ion-buttons end>
                 <button ion-button (click)="addResultsMarker()">
                     <ion-icon name="add"></ion-icon>Afficher les résultats</button>

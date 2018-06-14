@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SMS } from '@ionic-native/sms';
 
+
 /**
  * Generated class for the ListPage page.
  *
@@ -82,6 +83,12 @@ export class ListPage {
             alert(JSON.stringify(err))
         })
     }
+
+    // AddAbus() {
+    //         this.results = [];
+    // this.results = this.navParams.get('mapResults');
+    // console.log(this.results);
+    // }
 
     // showMenu(x) {
     //     this.businessInfo = [];

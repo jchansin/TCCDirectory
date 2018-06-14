@@ -1,11 +1,20 @@
 page-infos {
-
     ion-content {
-        @include linear-gradient(left,$green-and-blue);
+        @include linear-gradient(left, $green-and-blue);
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
+    }
+    // .vertical-align-content>* {
+    //     display: flex !important;
+    //     align-content: center !important;
+    //     align-items: center !important;
+    //     // justify-content: center !important;
+    // }
+
+    img.resize {
+        max-width:20%;
+        max-height:20%;
+        border-radius: 50%;
       }
-
 }
-

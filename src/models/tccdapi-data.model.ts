@@ -1,7 +1,6 @@
 import { TccdApiSkill } from "./tccdapi-skill.model";
 
 export class TccdApiData {
-
     id: number;
     name: string;
     description: string;
@@ -34,5 +33,4 @@ export class TccdApiData {
     created_at: string;
     updated_at: string;
     skills: TccdApiSkill[];
-
 }

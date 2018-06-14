@@ -1,24 +1,24 @@
-    <ion-header>
+<ion-header>
 
-        <ion-navbar>
-            <ion-buttons end>
-                <button ion-button (click)="goToListPage()">
-                    <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
-                </button>
-            </ion-buttons>
-            <ion-buttons end>
-                    <button ion-button (click)="goToFavoritesPage()">
-                        <ion-icon ios="ios-star" md="md-star"></ion-icon>
-                    </button>
-                </ion-buttons>
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button (click)="goToListPage()">
+                <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-buttons end>
+            <button ion-button (click)="goToFavoritesPage()">
+                <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            </button>
+        </ion-buttons>
 
-            <ion-title text-center>Carte des résultats</ion-title>
-        </ion-navbar>
+        <ion-title text-center>Carte des résultats</ion-title>
+    </ion-navbar>
 
-    </ion-header>
+</ion-header>
 
 <ion-content padding>
 
-        <div #map id="map"></div>
+    <div #map id="map"></div>
 
 </ion-content>

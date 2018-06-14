@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="tccdirectory.jeromerahiti" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="tccdirectory.jeromerahiti" version="1.0.0"
+    xmlns="http://www.w3.org/ns/widgets"
+    xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Tahiti Code Camp Directory</name>
     <description>TCC Mobile Project 2.(group 3)</description>
     <author email="rperez.tcc@gmail.com" href="http://ionicframework.com/">Jérôme CHANSIN, Rahiti PEREZ - TCC Team</author>

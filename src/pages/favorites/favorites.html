@@ -1,7 +1,7 @@
 <ion-header>
 
-        <ion-navbar>
-                <!-- <ion-buttons end>
+    <ion-navbar>
+        <!-- <ion-buttons end>
                     <button ion-button (click)="goToSearchPage()">
                         <ion-icon ios="ios-search" md="md-search"></ion-icon>
                     </button>
@@ -11,31 +11,31 @@
                         <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
                     </button>
                 </ion-buttons> -->
-                <ion-title text-center>Favorites</ion-title>
-            </ion-navbar>
+        <ion-title text-center>Favorites</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
 
-        <ion-list>
+    <ion-list>
 
-                <ion-item style="color: #333; background: transparent" *ngFor="let favorite of favorites" >
-        
-                        <ion-avatar item-start>
-                                <img src={{favorite.logo}}>
-                        </ion-avatar>
-                        <h2>{{favorite.name}}</h2>
-        
-                        <button ion-button icon-only (click)="goToInfosPage(favorite.id)" item-end style="background: transparent">
-                            <ion-icon ios="ios-information-circle" md="md-information-circle"></ion-icon>
-                        </button>
-        
-        
-                </ion-item>
-        
-            </ion-list>
+        <ion-item style="color: #333; background: transparent" *ngFor="let favorite of favorites">
+
+            <ion-avatar item-start>
+                <img src={{favorite.logo}}>
+            </ion-avatar>
+            <h2>{{favorite.name}}</h2>
+
+            <button ion-button icon-only (click)="goToInfosPage(favorite.id)" item-end style="background: transparent">
+                <ion-icon ios="ios-information-circle" md="md-information-circle"></ion-icon>
+            </button>
+
+
+        </ion-item>
+
+    </ion-list>
 
 
 </ion-content>

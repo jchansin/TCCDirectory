@@ -1,12 +1,13 @@
-// import { MapPage } from './../map/map';
-import { DatabaseProvider } from "./../../services/database.service";
-import { TccdApiService } from "./../../services/tccdapi.service";
-import { Component } from "@angular/core";
-import { NavController, NavParams } from "ionic-angular";
-import { CallNumber } from "@ionic-native/call-number";
-import { SMS } from "@ionic-native/sms";
-import { InAppBrowser } from "@ionic-native/in-app-browser";
-import { Toast } from "@ionic-native/toast";
+import { MapPage } from './../map/map';
+import { DatabaseProvider } from './../../services/database.service';
+import { TccdApiService } from './../../services/tccdapi.service';
+import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
+import { CallNumber } from '@ionic-native/call-number';
+import { SMS } from '@ionic-native/sms';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Toast } from '@ionic-native/toast';
+
 
 @Component({
     selector: "page-infos",
@@ -17,25 +18,26 @@ export class InfosPage {
     businessId: any;
     name: string;
 
-    constructor(
-        public navCtrl: NavController,
-        public navParams: NavParams,
-        public tccdApi: TccdApiService,
-        private callSvc: CallNumber,
-        private sms: SMS,
-        private iab: InAppBrowser,
-        private db: DatabaseProvider,
-        // private mapPage: MapPage,
-        private toast: Toast
-    ) {}
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public tccdApi: TccdApiService, 
+    private callSvc: CallNumber, 
+    private sms: SMS, 
+    private iab: InAppBrowser, 
+    private db: DatabaseProvider, 
+    private toast: Toast
+  ) {
+  }
 
-    ionViewDidLoad() {
-        console.log("ionViewDidLoad InfosPage");
-        this.results = [];
-        console.log(this.navParams.get("businessId"));
-        this.businessId = this.navParams.get("businessId");
-        this.getBusinessInfo(this.businessId);
-    }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad InfosPage');
+    this.results = [];
+    console.log(this.navParams.get('businessId'));
+    this.businessId = this.navParams.get('businessId');
+    this.getBusinessInfo(this.businessId);
+  }
+
 
     getBusinessInfo(x) {
         this.tccdApi
@@ -91,10 +93,10 @@ export class InfosPage {
         this.db.testFavorite(x, y);
     }
 
-    /* calcDirections(x,y) {
-    this.navCtrl.push(MapPage);
-    this.mapPage.initDirections(x,y);
-  } */
+  calcDirections(x,y) {
+    this.navCtrl.push(MapPage, {'x':x,'y':y, "fromPage":"infos"});
+  }
+
 
     sendReport(x) {
         this.tccdApi.getAbus(x);

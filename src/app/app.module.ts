@@ -29,41 +29,48 @@ import { GoogleMapsProvider } from "../providers/google-maps/google-maps";
 import { LocationsProvider } from "../providers/locations/locations";
 
 @NgModule({
-    declarations: [
-        MyApp,
-        WelcomePage,
-        SearchPage,
-        MapPage,
-        ListPage,
-        FavoritesPage,
-        InfosPage
-    ],
-    imports: [HttpModule, BrowserModule, IonicModule.forRoot(MyApp)],
-    bootstrap: [IonicApp],
-    entryComponents: [
-        MyApp,
-        WelcomePage,
-        SearchPage,
-        MapPage,
-        ListPage,
-        FavoritesPage,
-        InfosPage
-    ],
-    providers: [
-        StatusBar,
-        SplashScreen,
-        SQLite,
-        TccdApiService,
-        Geolocation,
-        InAppBrowser,
-        CallNumber,
-        SMS,
-        DatabaseProvider,
-        Toast,
-        { provide: ErrorHandler, useClass: IonicErrorHandler },
-        ConnectivityProvider,
-        GoogleMapsProvider,
-        LocationsProvider
-    ]
+
+  declarations: [
+    MyApp,
+    WelcomePage,
+    SearchPage,
+    MapPage,
+    ListPage,
+    FavoritesPage,
+    InfosPage,
+  ],
+  imports: [
+    HttpModule,
+    BrowserModule,
+    IonicModule.forRoot(MyApp)
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    WelcomePage,
+    SearchPage,
+    MapPage,
+    ListPage,
+    FavoritesPage,
+    InfosPage,
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    SQLite,
+    TccdApiService,
+    Geolocation,
+    InAppBrowser,
+    CallNumber,
+    SMS,
+    DatabaseProvider,
+    Toast,
+    MapPage,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ConnectivityProvider,
+    GoogleMapsProvider,
+    LocationsProvider
+  ]
+
 })
 export class AppModule {}

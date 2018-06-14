@@ -9,12 +9,6 @@ import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 import { SMS } from "@ionic-native/sms";
 
-/**
- * Generated class for the ListPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
     selector: "page-list",
@@ -61,9 +55,5 @@ export class ListPage {
         console.log(this.results);
     }
 
-    // AddAbus() {
-    //         this.results = [];
-    // this.results = this.navParams.get('mapResults');
-    // console.log(this.results);
-    // }
+
 }

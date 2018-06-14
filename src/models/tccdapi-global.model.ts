@@ -1,8 +1,7 @@
-import { TccdApiSkill } from './tccdapi-skill.model';
-import { TccdApiData } from './tccdapi-data.model';
+import { TccdApiSkill } from "./tccdapi-skill.model";
+import { TccdApiData } from "./tccdapi-data.model";
 
 export class TccdApiGlobal {
-
     success: number;
     data: TccdApiData[];
 
@@ -50,5 +49,4 @@ export class TccdApiGlobal {
     prev_page_url: string;
     to: number;
     total: number;
-
 }

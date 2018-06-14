@@ -1,9 +1,8 @@
-import { DatabaseProvider } from './../../services/database.service';
-import { SearchPage } from './../search/search';
+import { DatabaseProvider } from "./../../services/database.service";
+import { SearchPage } from "./../search/search";
 import { Component } from "@angular/core";
 import { NavController, NavParams, Platform } from "ionic-angular";
 import { SQLite, SQLiteObject } from "@ionic-native/sqlite";
-
 
 @Component({
     selector: "page-welcome",
@@ -32,10 +31,7 @@ export class WelcomePage {
         }, 4000);
     }
 
-
     redirectToSearch() {
-    this.navCtrl.setRoot(SearchPage);
+        this.navCtrl.setRoot(SearchPage);
     }
-
-
 }

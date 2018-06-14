@@ -18,6 +18,7 @@ export class MapPage {
     map: any;
     value: string;
     results = [];
+    mapResults = [];
     menuId: number;
     businessInfo: any;
 
@@ -50,18 +51,28 @@ export class MapPage {
     // Initialise la carte centrée sur la position du téléphone
     loadMap() {
         console.log('Load map');
-        this.geolocation.getCurrentPosition().then((position) => {
-                let latLng = new google.maps.LatLng(
-                    position.coords.latitude,
-                    position.coords.longitude
-                );
-                this.map.setCenter(latLng);
-                this.addMarker();
-                console.log(position);
-            })
-            .catch((error) => {
-                console.log('Error getting location', error);
-              });
+        
+        // *** Récupère la position du téléphone, centre la carte sur cette position et y ajoute un marqueur ***
+        // this.geolocation.getCurrentPosition().then((position) => {
+        //         let latLng = new google.maps.LatLng(
+        //             position.coords.latitude,
+        //             position.coords.longitude
+        //         );
+        //         this.map.setCenter(latLng);
+        //         this.addMarker();
+        //         console.log(position);
+        //     })
+        //     .catch((error) => {
+        //         console.log('Error getting location', error);
+        //       });
+
+        let latLng = new google.maps.LatLng(
+            48.8584,
+            2.2945
+        )
+        this.map.setCenter(latLng);
+        this.addMarker();
+        
     }
 
     // Ajoute un marqueur au centre de la carte
@@ -168,7 +179,8 @@ export class MapPage {
     // }
 
     goToListPage(){
-        this.navCtrl.push(ListPage, this.results)
+        this.mapResults = [];
+        this.navCtrl.push(ListPage, {mapResults: this.results})
     }
 
     goToInfosPage(){

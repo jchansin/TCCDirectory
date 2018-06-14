@@ -65,19 +65,19 @@ export class TccdApiService {
         .catch(error => console.log('Erreur dans getAbus', JSON.stringify(error)))
     }
 
-    // Fonction de recherche POST
+    /* // Fonction de recherche POST
     public searchBusiness(x) {
         const url = `${this.baseUrl}search`;
         let obj = {};
 
-        this.http.post(url, { 'skills': x })
+        return this.http.post(url, { 'skills': x })
         .map(res => res.json())
         .subscribe((data) => {
             console.log('Recherche effectuée sur les compétences ', x);
             obj = data;
             return obj;
         })
-    }
+    } */
 
 
 }

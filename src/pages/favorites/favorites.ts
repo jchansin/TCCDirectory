@@ -22,7 +22,7 @@ export class FavoritesPage {
     }
     goToListPage() {
         //   console.log('ionViewDidLoad MapPage');
-        this.navCtrl.setRoot(ListPage);
+        this.navCtrl.push(ListPage);
     }
 
     goToSearchPage() {

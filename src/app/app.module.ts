@@ -16,10 +16,14 @@ import { SearchPage } from '../pages/search/search';
 import { MapPage } from '../pages/map/map';
 import { ListPage } from '../pages/list/list';
 import { FavoritesPage } from '../pages/favorites/favorites';
+import { InfosPage } from './../pages/infos/infos';
 
 import { HttpModule } from '@angular/http';
 import { TccdApiService } from '../services/tccdapi.service';
 import { DatabaseProvider } from './../services/database.service';
+import { ConnectivityProvider } from '../providers/connectivity/connectivity';
+import { GoogleMapsProvider } from '../providers/google-maps/google-maps';
+import { LocationsProvider } from '../providers/locations/locations';
 
 
 
@@ -30,7 +34,8 @@ import { DatabaseProvider } from './../services/database.service';
     SearchPage,
     MapPage,
     ListPage,
-    FavoritesPage
+    FavoritesPage,
+    InfosPage
   ],
   imports: [
     HttpModule,
@@ -44,15 +49,23 @@ import { DatabaseProvider } from './../services/database.service';
     SearchPage,
     MapPage,
     ListPage,
-    FavoritesPage
+    FavoritesPage,
+    InfosPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     SQLite,
     TccdApiService,
+    Geolocation,
+    InAppBrowser,
+    CallNumber,
+    SMS,
     DatabaseProvider,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ConnectivityProvider,
+    GoogleMapsProvider,
+    LocationsProvider
   ]
 })
 export class AppModule {}

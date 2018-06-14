@@ -1,17 +1,17 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-buttons end>
+        <!-- <ion-buttons end>
             <button ion-button (click)="goToListPage()">
-                <ion-icon name="md-list"></ion-icon>
+                <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
             </button>
-        </ion-buttons>
+        </ion-buttons> -->
         <ion-buttons end>
             <button ion-button (click)="goToFavoritesPage()">
-                <ion-icon name="md-star"></ion-icon>
+                <ion-icon ios="ios-star" md="md-star"></ion-icon>
             </button>
         </ion-buttons>
-        <ion-title>Search</ion-title>
+        <ion-title text-center>Search</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -19,15 +19,14 @@
 
 <ion-content padding>
 
-    <button ion-button round id="searchButton" (tap)="makeSearch()">Lancer la recherche</button>
-    <br/>
-    <br/>
 
     <ion-item>
-        <ion-label>Quelles compétences recherchez-vous ?</ion-label>
-        <ion-select [(ngModel)]="skillArray" multiple="true" (ionChange)="showselected($event)">
+        <ion-label >Quelles compétences recherchez-vous ?</ion-label>
+        <ion-select [(ngModel)]="skillArray" multiple="true" (ionChange)="showselected($event)" style="color: #333;">
           <ion-option *ngFor="let skill of skills" value={{skill.id}}>{{skill.name}}</ion-option>
         </ion-select>
       </ion-item>
+
+      <button ion-button round id="searchButton" (tap)="makeSearch()">Recherche</button>
 
 </ion-content>

@@ -1,3 +1,5 @@
+import { SearchPage } from './../pages/search/search';
+import { MapPage } from './../pages/map/map';
 // import { HomePage } from "./../pages/home/home";
 
 import { Component } from "@angular/core";
@@ -12,7 +14,7 @@ import { WelcomePage } from './../pages/welcome/welcome';
 })
 export class MyApp {
 
-    rootPage: any = WelcomePage;
+    rootPage: any = SearchPage;
 
     constructor(
         platform: Platform,

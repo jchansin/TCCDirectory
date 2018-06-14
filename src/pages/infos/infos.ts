@@ -1,3 +1,4 @@
+// import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { MapPage } from './../map/map';
 import { DatabaseProvider } from './../../services/database.service';
 import { TccdApiService } from './../../services/tccdapi.service';
@@ -7,7 +8,6 @@ import { CallNumber } from '@ionic-native/call-number';
 import { SMS } from '@ionic-native/sms';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Toast } from '@ionic-native/toast';
-
 
 @Component({
     selector: "page-infos",
@@ -25,8 +25,9 @@ export class InfosPage {
     private callSvc: CallNumber, 
     private sms: SMS, 
     private iab: InAppBrowser, 
-    private db: DatabaseProvider, 
-    private toast: Toast
+    private database: DatabaseProvider, 
+    private toast: Toast,
+    // private androidPermissions: AndroidPermissions
   ) {
   }
 
@@ -60,6 +61,16 @@ export class InfosPage {
             });
     }
 
+    // // Permissions pour faire fonctionner les SMS sous Android 8.0
+    // checkSMSPermissions(x){
+    //   this.androidPermissions.requestPermissions(this.androidPermissions.READ_PHONE_STATE)
+    //   .then(() => {
+    //     console.log('Permission demandée');
+    //     this.sendSMS(x);
+    //   })
+    // }
+
+
     sendSMS(x) {
         var options: {
             replaceLineBreaks: false;
@@ -90,7 +101,7 @@ export class InfosPage {
 
     testFavorite(x, y) {
         console.log("testFavorite");
-        this.db.testFavorite(x, y);
+        this.database.testFavorite(x, y);
     }
 
   calcDirections(x,y) {

@@ -15,15 +15,15 @@ export class FavoritesPage {
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        private db: DatabaseProvider
+        private database: DatabaseProvider
     ) {}
 
     ionViewWillEnter() {
         console.log("ionViewWillEnter FavoritesPage");
+        this.getFavoritesList();
     }
 
     goToListPage() {
-        //   console.log('ionViewDidLoad MapPage');
         this.navCtrl.push(ListPage);
     }
 
@@ -32,14 +32,17 @@ export class FavoritesPage {
     }
 
     getFavoritesList() {
-        this.db
+        console.log('getFavoritesList');
+        this.favorites = [];
+        this.database
             .getFavoritesList()
             .then(data => {
+                console.log('Got favorites list')
                 for (let i = 0; i < data.rows.length; i++) {
                     this.favorites.push(data.rows.item(i));
                 }
             })
-            .catch(e => console.log(e));
+            .catch(e => console.log(JSON.stringify(e)));
     }
 
     goToInfosPage(x) {

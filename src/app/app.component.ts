@@ -11,7 +11,7 @@ import { WelcomePage } from './../pages/welcome/welcome';
     templateUrl: "app.html"
 })
 export class MyApp {
-    rootPage: any = SearchPage;
+    rootPage: any = WelcomePage;
 
     constructor(
         platform: Platform,
